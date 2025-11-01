@@ -1,157 +1,130 @@
-🍽️ Yola - Aplicación Web de Restaurante
+# Yola - Aplicación Web de Restaurante
 
-Una aplicación web completa para la gestión de un restaurante. Permite a los administradores gestionar platillos, eventos y ver consumos. Los usuarios pueden registrarse, iniciar sesión y ver la información pública del restaurante.
+Yola es una aplicación web completa para la gestión de restaurantes, permitiendo administrar platillos, eventos y usuarios, así como ofrecer una experiencia pública para clientes con información general del restaurante.
 
-🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
-Backend
+### Backend
 
-PHP: Lenguaje de programación principal.
+* **PHP**: Lenguaje principal.
+* **MySQL**: Sistema de gestión de bases de datos.
+* **Patrón MVC**: Implementación nativa del patrón Modelo-Vista-Controlador.
+* **Active Record**: Implementación personalizada para la manipulación de datos.
+* **Composer**: Gestión de dependencias.
+* **phpmailer/phpmailer**: Envío de correos electrónicos.
+* **intervention/image**: Procesamiento y optimización de imágenes.
+* **vlucas/phpdotenv**: Manejo de variables de entorno.
 
-MySQL: Sistema de gestión de bases de datos.
+### Frontend
 
-Arquitectura MVC: Patrón de diseño Modelo-Vista-Controlador implementado de forma nativa.
+* **JavaScript (ES6+)**
+* **SASS (SCSS)**
+* **Gulp** para compilación, minificación y optimización.
+* **Node.js (npm)** para gestión de paquetes.
 
-Active Record: Patrón de diseño para la manipulación de la base de datos (implementación personalizada en models/ActiveRecord.php).
+## Estructura del Proyecto
 
-Composer: Gestor de dependencias de PHP.
+```
+Yola/
+├── classes/                # Clases auxiliares
+├── controllers/            # Controladores
+├── includes/               # Configuración y entorno
+├── models/                 # Modelos y ActiveRecord
+├── public/                 # Punto de entrada y assets
+│   ├── build/              # Archivos compilados
+│   └── img/                # Imágenes optimizadas
+├── src/                    # Código fuente frontend
+│   ├── js/
+│   └── scss/
+├── sql/                    # Dump de base de datos
+├── vendor/                 # Dependencias de Composer
+├── views/                  # Plantillas y vistas
+│   ├── admin/
+│   ├── auth/
+│   ├── paginas/
+│   └── templates/
+├── .htaccess
+├── Router.php
+├── composer.json
+├── gulpfile.js
+└── package.json
+```
 
-phpmailer/phpmailer: Para el envío de correos electrónicos (confirmación de cuenta, recuperación).
+## Características
 
-intervention/image: Librería para el procesamiento y optimización de imágenes.
+### Área Pública
 
-vlucas/phpdotenv: Para la gestión de variables de entorno.
+* Registro y autenticación de usuarios.
+* Confirmación de cuenta vía correo.
+* Recuperación de contraseña mediante token.
+* Páginas informativas (Inicio, Nosotros, Menú, etc.).
+* API pública para consumo de datos de platillos.
 
-Frontend
+### Panel de Administración
 
-JavaScript (ES6+): Para la interactividad del lado del cliente.
+* Dashboard general.
+* CRUD completo para platillos y eventos.
+* Lista de usuarios registrados.
+* Gestión de consumos (en desarrollo).
 
-SASS (SCSS): Preprocesador de CSS para estilos.
+## Instalación y Configuración
 
-Gulp: Automatizador de tareas (compilación de SASS, minificación de JS, optimización de imágenes).
+### 1. Base de Datos
 
-Node.js (npm): Gestor de paquetes de frontend y ejecutor de tareas.
+Importar el archivo ubicado en:
 
-💂️ Estructura del Proyecto
+```
+sql/restaurante_js.sql
+```
 
-📚 Yola (Proyecto Raíz)
-├── 📚 classes/                # Clases auxiliares (Email.php, Paginacion.php)
-├── 📚 controllers/            # Controladores (lógica de peticiones)
-├── 📚 includes/               # Archivos de configuración (app.php, database.php, .env)
-├── 📚 models/                 # Modelos de datos (ActiveRecord.php, Usuario.php, Platillo.php)
-├── 📚 public/                 # Punto de entrada (index.php) y assets públicos
-│   ├── 📚 build/              # Archivos compilados (CSS, JS)
-│   └── 📚 img/                # Imágenes optimizadas
-├── 📚 src/                    # Archivos fuente de frontend
-│   ├── 📚 js/                 # Scripts de JavaScript
-│   └── 📚 scss/               # Archivos de SASS
-├── 📚 sql/                    # Dump de la base de datos (restaurante_js.sql)
-├── 📚 vendor/                 # Dependencias de Composer
-├── 📚 views/                  # Vistas y plantillas (HTML/PHP)
-│   ├── 📚 admin/              # Vistas del panel de administración
-│   ├── 📚 auth/               # Vistas de autenticación (login, registro)
-│   ├── 📚 paginas/            # Vistas públicas (inicio, nosotros, etc.)
-│   └── 📚 templates/          # Partes reutilizables (header, footer, sidebar)
-├── 📝 .htaccess               # Configuración de Apache
-├── 📝 Router.php              # Enrutador personalizado
-├── 📝 composer.json           # Dependencias de PHP
-├── 📝 gulpfile.js             # Configuración de tareas Gulp
-└── 📝 package.json            # Dependencias de Node.js
+### 2. Variables de Entorno
 
+Editar `.env` en `includes/` con los valores correspondientes:
 
-⚙️ Características Principales
-
-Este proyecto se divide en un área pública y un panel de administración:
-
-Área Pública (/)
-
-Inicio: Página de bienvenida.
-
-Autenticación:
-
-Registro de nuevas cuentas.
-
-Confirmación de cuenta por Email.
-
-Inicio de sesión.
-
-Recuperación de contraseña (con token por email).
-
-Páginas Informativas: "Cómo Funciona", "Sobre Nosotros", "Platos".
-
-API de Platillos: Endpoint en /api/platillos para consumir los platillos desde el frontend.
-
-Panel de Administración (/admin)
-
-Dashboard: Vista principal con métricas (en desarrollo).
-
-Gestión de Platillos: CRUD completo (Crear, Leer, Actualizar, Borrar) para los platillos del menú.
-
-Gestión de Eventos: CRUD completo para los eventos del restaurante.
-
-Consumos: Vista de los consumos registrados (en desarrollo).
-
-Usuarios Registrados: Vista de los usuarios registrados en la plataforma.
-
-🏃‍♂️ Cómo Ejecutar la Aplicación
-
-Sigue estos pasos para configurar y ejecutar el proyecto en un entorno local:
-
-Base de Datos:
-
-Importa el archivo sql/restaurante_js.sql en tu gestor de MySQL (phpMyAdmin, MySQL Workbench, etc.) para crear la base de datos y sus tablas.
-
-Variables de Entorno:
-
-Navega a la carpeta includes/.
-
-Renombra (o copia) el archivo .env (si es un template) o edítalo directamente.
-
-Configura tus credenciales de base de datos y del servicio de correo (PHPMailer):
-
+```
 DB_HOST=localhost
-DB_USER=tu_usuario_db
-DB_PASS=tu_password_db
+DB_USER=usuario
+DB_PASS=password
 DB_NAME=restaurante_js
 
 EMAIL_HOST=smtp.mailtrap.io
 EMAIL_PORT=2525
-EMAIL_USER=tu_usuario_mailtrap
-EMAIL_PASS=tu_password_mailtrap
+EMAIL_USER=usuario_mailtrap
+EMAIL_PASS=password_mailtrap
+```
 
+### 3. Dependencias del Backend
 
-Dependencias de Backend (PHP):
-
-Abre una terminal en la raíz del proyecto y ejecuta:
-
+```
 composer install
+```
 
+### 4. Dependencias del Frontend
 
-Dependencias de Frontend (Node.js):
-
-En la misma terminal, instala las dependencias de Node:
-
+```
 npm install
+```
 
+### 5. Compilación de Assets
 
-Compilar Assets de Frontend:
-
-Ejecuta Gulp para compilar los archivos SASS y JS:
-
+```
 npm run dev
+```
 
+### 6. Ejecución del Servidor Local
 
-(Este comando ejecutará la tarea dev definida en gulpfile.js y package.json).
-
-Servidor Local:
-
-Opción A (Servidor de PHP): La forma más rápida de probar.
-
+```
 php -S localhost:8000 -t public
+```
 
+## Acceso a la Aplicación
 
-Opción B (Apache/Nginx): Configura un host virtual (ej. yola.test) que apunte al directorio public/ del proyecto.
+Abrir en navegador:
 
-Acceso:
+```
+http://localhost:8000
+```
 
-Abre tu navegador y visita http://localhost:8000 (o la URL que hayas configurado).
+## Licencia
+
+Este proyecto se encuentra bajo licencia de uso personal y académico. Ajustar según necesidades.
